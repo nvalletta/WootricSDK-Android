@@ -107,9 +107,9 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
     private boolean mContinueAfterConfigChange;
 
     private PreferencesUtils mPrefs;
-    private ImageView mShareFacebook;
-    private ImageView mShareTwitter;
-    private ImageView mShareGooglePlus;
+//    private ImageView mShareFacebook;
+//    private ImageView mShareTwitter;
+//    private ImageView mShareGooglePlus;
     private ImageView mSharePlaystore;
 
     static void start(Context context, Bitmap backgroundImage, User user, EndUser endUser, String originUrl, Settings settings) {
@@ -158,9 +158,9 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
         mTvSurveyQuestion.setText(getSurveyQuestion());
         mTvPoweredBy.setOnClickListener(goToWootricPage());
 
-        mShareFacebook.setOnClickListener(startFacebook());
-        mShareTwitter.setOnClickListener(startTwitter());
-        mShareGooglePlus.setOnClickListener(startGooglePlus());
+//        mShareFacebook.setOnClickListener(startFacebook());
+//        mShareTwitter.setOnClickListener(startTwitter());
+//        mShareGooglePlus.setOnClickListener(startGooglePlus());
         mSharePlaystore.setOnClickListener(startPlaystore());
         setupFeedbackForm();
 
@@ -198,9 +198,9 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
 
         mTvFinalThankYou = (TextView) mContainer.findViewById(R.id.tv_final_thank_you);
 
-        mShareFacebook = (ImageView) mRlShare.findViewById(R.id.iv_share_facebook);
-        mShareTwitter = (ImageView) mRlShare.findViewById(R.id.iv_share_twitter);
-        mShareGooglePlus = (ImageView) mRlShare.findViewById(R.id.iv_share_google_plus);
+//        mShareFacebook = (ImageView) mRlShare.findViewById(R.id.iv_share_facebook);
+//        mShareTwitter = (ImageView) mRlShare.findViewById(R.id.iv_share_twitter);
+//        mShareGooglePlus = (ImageView) mRlShare.findViewById(R.id.iv_share_google_plus);
         mSharePlaystore = (ImageView) mRlShare.findViewById(R.id.iv_share_playstore);
     }
 
@@ -390,7 +390,11 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
             @Override
             public void onClick(View v) {
                 sendResponseRequest(true);
-                finishSurvey();
+                if(mSelectedScore>=8){
+                    completedWithHighScore();
+                } else {
+                    finishSurvey();
+                }
             }
         };
     }
@@ -528,7 +532,7 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
     }
 
     private void finishAfterResponse() {
-        int finalHeight = mRlSurvey.getHeight() - mSelectedScore >= 8 ? 0 :mTvFinalThankYou.getHeight();
+        int finalHeight = mRlSurvey.getHeight() - mTvFinalThankYou.getHeight();
 
         mRlSurvey.animate()
                 .translationY(finalHeight)
@@ -538,14 +542,15 @@ public class SurveyActivity extends Activity implements SurveyRatingBar.Callback
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         clearAfterSurvey();
-                        if (mSelectedScore<8) {
-                            showFinalThankYou();
-                        } else {
-                            showSharePage();
-                        }
+                        showFinalThankYou();
                     }
                 })
                 .start();
+    }
+
+    private void completedWithHighScore() {
+        clearAfterSurvey();
+        showSharePage();
     }
 
     private void finishAfterDecline() {

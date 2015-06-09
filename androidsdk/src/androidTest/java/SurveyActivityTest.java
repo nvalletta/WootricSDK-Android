@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -22,6 +23,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -57,6 +59,24 @@ public class SurveyActivityTest extends ActivityInstrumentationTestCase2<SurveyA
     public void tearDown() throws Exception {
         getActivity().clearAfterSurvey();
         super.tearDown();
+    }
+    public void testShareReviewTakePlaceWhenUserScoresMoreThan8() {
+        Intent intent = getTestIntent();
+        setupActivity(intent);
+
+        goToFeedbackView(9);
+
+        // Add text in feedback edit text
+        onView(withId(R.id.et_feedback)).perform(typeText("Great service"));
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            onView(withId(R.id.et_feedback)).perform(closeSoftKeyboard());
+        }
+        // Check if feedback btn is enabled
+        wait(500);
+        onView(withId(R.id.btn_send_feedback))
+                .check(matches(isEnabled()))
+                .perform(click());
+        onView(withId(R.id.tv_would_you_like_to_share)).check(matches(isDisplayed()));
     }
 
     public void testRatingView_initState() {
@@ -109,7 +129,6 @@ public class SurveyActivityTest extends ActivityInstrumentationTestCase2<SurveyA
         // Add text in feedback edit text
         onView(withId(R.id.et_feedback)).perform(typeText("Great service"));
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-
             onView(withId(R.id.et_feedback)).perform(closeSoftKeyboard());
         }
         // Check if feedback btn is enabled

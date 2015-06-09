@@ -186,48 +186,49 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/survey_modal_button_margin"
                     android:layout_marginBottom="@dimen/share_icon_size"
+                    android:gravity="center"
                     android:layout_below="@id/tv_would_you_like_to_share"
                     android:weightSum="4">
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/share_icon_size"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:id="@+id/iv_share_facebook"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_facebook"
-                            android:layout_width="@dimen/share_icon_size"
-                            android:layout_height="@dimen/share_icon_size" />
-                    </RelativeLayout>
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="@dimen/share_icon_size"-->
+                        <!--android:layout_weight="1">-->
+                        <!--<ImageView-->
+                            <!--android:id="@+id/iv_share_facebook"-->
+                            <!--android:layout_centerInParent="true"-->
+                            <!--android:src="@drawable/ic_facebook"-->
+                            <!--android:layout_width="@dimen/share_icon_size"-->
+                            <!--android:layout_height="@dimen/share_icon_size" />-->
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="@dimen/share_icon_size"-->
+                        <!--android:layout_weight="1">-->
+                        <!--<ImageView-->
+                            <!--android:id="@+id/iv_share_twitter"-->
+                            <!--android:layout_centerInParent="true"-->
+                            <!--android:src="@drawable/ic_twitter"-->
+                            <!--android:layout_width="@dimen/share_icon_size"-->
+                            <!--android:layout_height="@dimen/share_icon_size" />-->
+                    <!--</RelativeLayout>-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="@dimen/share_icon_size"-->
+                        <!--android:layout_weight="1">-->
+                        <!--<ImageView-->
+                            <!--android:id="@+id/iv_share_google_plus"-->
+                            <!--android:layout_centerInParent="true"-->
+                            <!--android:src="@drawable/ic_google_plus"-->
+                            <!--android:layout_width="@dimen/share_icon_size"-->
+                            <!--android:layout_height="@dimen/share_icon_size" />-->
+                    <!--</RelativeLayout>-->
 
                     <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/share_icon_size"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:id="@+id/iv_share_twitter"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_twitter"
-                            android:layout_width="@dimen/share_icon_size"
-                            android:layout_height="@dimen/share_icon_size" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/share_icon_size"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:id="@+id/iv_share_google_plus"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/ic_google_plus"
-                            android:layout_width="@dimen/share_icon_size"
-                            android:layout_height="@dimen/share_icon_size" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/share_icon_size"
-                        android:layout_weight="1">
+                        android:layout_width="48dp"
+                        android:layout_height="@dimen/share_icon_size">
+                        <!--android:layout_weight="1">-->
                         <ImageView
                             android:id="@+id/iv_share_playstore"
                             android:layout_centerInParent="true"
