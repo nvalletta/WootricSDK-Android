@@ -26,7 +26,14 @@ Usage
 
 *For a working implementation of this project see the `app/` folder.*
 
-All you need to do is to add this code to you Activity's `onCreate` method:
+All you need to do is to import the library:
+
+```java
+import com.wootric.androidsdk.*;
+import com.wootric.androidsdk.objects.*;
+```
+
+and add this code to you Activity's `onCreate` method:
 
 ```java
 Wootric.with(this)
@@ -59,11 +66,11 @@ Wootric.with(this)
 ```
 
 ### Custom messages ###
-Wootric provides designated class for providing custom messages -`WootricCustomMessages`
+Wootric provides designated class for providing custom messages -`CustomMessage`
 
 ```java
-WootricCustomMessage myCustomMessage = WootricCustomMessage.create()
-                .recommendTo("Recommend to")
+CustomMessage myCustomMessage = CustomMessage.create()
+                .recommendTarget("Recommend to")
                 .placeholder("Default placeholder")
                 .detractorPlaceholder("Detractors placeholder")
                 .passivePlaceholder("Passives placeholder")
@@ -75,6 +82,7 @@ WootricCustomMessage myCustomMessage = WootricCustomMessage.create()
 ```
 
 Then simply:
+
 ```java
 Wootric.with(this)
     .user(CLIENT_ID, CLIENT_SECRET, ACCOUNT_TOKEN)
@@ -82,7 +90,18 @@ Wootric.with(this)
     .customMessage(myCustomMessage)
     .survey();               
 ```
+### Testing ###
+To test the survey in your application, add .forceSurvey() to your code to open
+the survey without contacting the eligibility server:
 
+```java
+Wootric.with(this)
+  .user(CLIENT_ID, CLIENT_SECRET, ACCOUNT_TOKEN)
+  .endUser(END_USER_EMAIL, ORIGIN_URL, endUserProperties)
+  .customMessage(myCustomMessage)
+  .forceSurvey()
+  .survey();
+```
 ### Other parameters ###
 There are many other parameters which can be set in Wootric:
 
@@ -97,5 +116,6 @@ Wootric.with(this)
   .resurveyThrottle(<RESURVEY THROTTLE>)
   .visitorPercent(<VISITOR PERCENT>)
   .surveyImmediately()
+  .forceSurvey();
   .survey();
 ```
