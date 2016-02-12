@@ -2,19 +2,12 @@ package com.wootric.androidsdk.views.phone;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.method.LinkMovementMethod;
-import android.text.method.MovementMethod;
-import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -133,7 +126,7 @@ public class SurveyLayoutPhone extends LinearLayout
         Resources res = mContext.getResources();
         mColorNotSelected = res.getColor(R.color.wootric_dark_gray);
         mColorSelected = res.getColor(R.color.wootric_brand_color);
-        mColorBlack = res.getColor(android.R.color.black);
+        mColorBlack = res.getColor(R.color.wootric_disabled_text);
         mColorEnabled = res.getColor(R.color.wootric_survey_layout_header_background);
 
         mScoreTextSizeSelected = res.getDimension(R.dimen.wootric_selected_score_text_size);
@@ -248,11 +241,11 @@ public class SurveyLayoutPhone extends LinearLayout
 
     private void updateAnchors(int newScore) {
         boolean selectAnchorNotLikely = (newScore == 0);
-        mAnchorNotLikely.setTextColor(selectAnchorNotLikely ? mColorSelected : Color.BLACK);
+        mAnchorNotLikely.setTextColor(selectAnchorNotLikely ? mColorSelected : mColorBlack);
         mAnchorNotLikely.setAlpha(selectAnchorNotLikely ? 1f : 0.38f);
 
         boolean selectAnchorLikely = (newScore == 10);
-        mAnchorLikely.setTextColor(selectAnchorLikely ? mColorSelected : Color.BLACK);
+        mAnchorLikely.setTextColor(selectAnchorLikely ? mColorSelected : mColorBlack);
         mAnchorLikely.setAlpha(selectAnchorLikely ? 1f : 0.38f);
     }
 

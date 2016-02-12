@@ -17,85 +17,86 @@ import com.wootric.androidsdk.utils.ScreenUtils;
 /**
  * Created by maciejwitowski on 10/8/15.
  */
-public class ScoreView extends TextView implements View.OnClickListener{
+public class ScoreView extends TextView implements View.OnClickListener {
 
-    private int mTextColorSelected;
-    private int mTextColorNotSelected;
+	private int mTextColorSelected;
+	private int mTextColorNotSelected;
 
-    private OnScoreClickListener onScoreClickListener;
+	private OnScoreClickListener onScoreClickListener;
 
-    public ScoreView(Context context) {
-        super(context);
-        init();
-    }
+	public ScoreView(Context context) {
+		super(context);
+		init();
+	}
 
-    public ScoreView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
-    }
+	public ScoreView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
 
-    public ScoreView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
+	public ScoreView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		init();
+	}
 
-    private void init() {
-        setGravity(Gravity.CENTER);
+	private void init() {
+		setGravity(Gravity.CENTER);
 
-        final Context context = getContext();
-        final Resources res = context.getResources();
+		final Context context = getContext();
+		final Resources res = context.getResources();
 
-        mTextColorSelected = res.getColor(android.R.color.white);
-        mTextColorNotSelected = res.getColor(android.R.color.black);
+		mTextColorSelected = res.getColor(R.color.wootric_score_selected);
+		mTextColorNotSelected = res.getColor(R.color.wootric_score_unselected);
 
-        final Resources resources = getResources();
-        Drawable drawable;
+		final Resources resources = getResources();
+		Drawable drawable;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            drawable = resources.getDrawable(R.drawable.score, null);
-        } else {
-            drawable = resources.getDrawable(R.drawable.score);
-        }
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			drawable = resources.getDrawable(R.drawable.score, null);
+		} else {
+			drawable = resources.getDrawable(R.drawable.score);
+		}
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(drawable);
-        }
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			setBackground(drawable);
+		}
 
-        setHeight((int) ScreenUtils.dpToPx(42));
-        setWidth((int) ScreenUtils.dpToPx(42));
+		setHeight((int) ScreenUtils.dpToPx(42));
+		setWidth((int) ScreenUtils.dpToPx(42));
 
-        LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        int margin = (int) ScreenUtils.dpToPx(6);
-        llp.setMargins(margin, 0, 0, 0);
-        setLayoutParams(llp);
+		LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
+			LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+		int margin = (int) ScreenUtils.dpToPx(6);
+		llp.setMargins(margin, 0, 0, 0);
+		setLayoutParams(llp);
 
-        setOnClickListener(this);
-    }
+		setSelected(false);
+		setOnClickListener(this);
+	}
 
-    @Override
-    public void onClick(View v) {
-        setSelected(true);
+	@Override
+	public void onClick(View v) {
+		setSelected(true);
 
-        if(onScoreClickListener != null) {
-            int score = Integer.valueOf(((ScoreView)v).getText().toString());
-            onScoreClickListener.onScoreClick(score);
-        }
-    }
+		if (onScoreClickListener != null) {
+			int score = Integer.valueOf(((ScoreView) v).getText().toString());
+			onScoreClickListener.onScoreClick(score);
+		}
+	}
 
-    @Override
-    public void setSelected(boolean selected) {
-        super.setSelected(selected);
+	@Override
+	public void setSelected(boolean selected) {
+		super.setSelected(selected);
 
-        setTextColor(isSelected() ? mTextColorSelected : mTextColorNotSelected);
-        setTypeface(null, isSelected() ? Typeface.BOLD : Typeface.NORMAL);
-    }
+		setTextColor(isSelected() ? mTextColorSelected : mTextColorNotSelected);
+		setTypeface(null, isSelected() ? Typeface.BOLD : Typeface.NORMAL);
+	}
 
-    public void setOnScoreClickListener(OnScoreClickListener onScoreClickListener) {
-        this.onScoreClickListener = onScoreClickListener;
-    }
+	public void setOnScoreClickListener(OnScoreClickListener onScoreClickListener) {
+		this.onScoreClickListener = onScoreClickListener;
+	}
 
-    public interface OnScoreClickListener {
-        void onScoreClick(int score);
-    }
+	public interface OnScoreClickListener {
+		void onScoreClick(int score);
+	}
 }

@@ -8,4 +8,8 @@
     <color name="wootric_green">#7da52d</color>
     <color name="wootric_edit_text_background">#05000000</color>
     <color name="wootric_edit_text_border">#19000000</color>
+    <color name="wootric_disabled_text">@android:color/black</color>
+
+    <color name="wootric_score_selected">@android:color/white</color>
+    <color name="wootric_score_unselected">@android:color/black</color>
 </resources>

@@ -1,5 +1,22 @@
-.gradle
-/local.properties
-/.idea
+# Gradle
+.gradle/
+build/
+
+# IntelliJ
+.idea/*
+*.iml
+
+*~
+*.swp
+local.properties
 .DS_Store
-/build
+
+#secure
+signing.properties
+
+#Crashlytics
+*com_crashlytics_export_strings.xml
+*crashlytics-build.properties
+
+*.hprof
+captures
