@@ -251,13 +251,7 @@ public class SurveyLayoutTablet extends LinearLayout
 
         mBtnFacebook.setVisibility(shouldShowFacebookBtn ? VISIBLE : GONE);
 
-        final String feedback = getFeedback();
-
-        boolean shouldShowTwitterBtn =
-                mCurrentScore >= 9 &&
-                        mSettings.getTwitterPage() != null &&
-                        feedback != null &&
-                        !feedback.isEmpty();
+        boolean shouldShowTwitterBtn = (mCurrentScore >= 9 && mSettings.getTwitterPage() != null);
 
         mBtnTwitter.setVisibility(shouldShowTwitterBtn ? VISIBLE : GONE);
     }
