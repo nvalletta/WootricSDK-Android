@@ -154,11 +154,7 @@ public class ThankYouLayout extends RelativeLayout {
 
         mLayoutFacebook.setVisibility(shouldShowFacebookBtn ? VISIBLE : GONE);
 
-        boolean shouldShowTwitterBtn =
-                        mScore >= 9 &&
-                        mSettings.getTwitterPage() != null &&
-                        mFeedback != null &&
-                        !mFeedback.isEmpty();
+        boolean shouldShowTwitterBtn = (mScore >= 9 && mSettings.getTwitterPage() != null);
 
         mLayoutTwitter.setVisibility(shouldShowTwitterBtn ? VISIBLE : GONE);
     }
