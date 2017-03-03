@@ -162,7 +162,6 @@ public class SurveyManager implements SurveyValidator.OnSurveyValidatedListener,
         if(isTablet) {
             fragmentManager.beginTransaction()
                     .add(android.R.id.content, surveyFragment)
-                    .setCustomAnimations(R.anim.slide_up_dialog, R.anim.slide_down_dialog)
                     .addToBackStack(null).commit();
         } else {
             surveyFragment.show(fragmentManager, SURVEY_DIALOG_TAG);
